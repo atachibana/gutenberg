@@ -52,7 +52,7 @@ jobs:
             # The head SHA comes from the event. PR code is never checked out,
             # built, or executed.
             - name: Report the status for this pull request
-              uses: mawesomedev/pr-baseline-action@cc4d934b8c7c8cd2fd965d8334849d8108321ab3 # v0.2.0
+              uses: mawesomedev/pr-baseline-action@729efbcd239b8a4e578eead7b5321af2f79bbd99 # v0.2.1
               with:
                   base: trunk
                   baselines: ${{ env.PR_BASELINES }}
@@ -98,7 +98,7 @@ jobs:
               # An unforced move still moves when a labeled merge earned it, which
               # is not what a maintainer asking for a refresh asked for.
               if: ${{ inputs.mode != 'refresh-pr-statuses' }}
-              uses: mawesomedev/pr-baseline-action@cc4d934b8c7c8cd2fd965d8334849d8108321ab3 # v0.2.0
+              uses: mawesomedev/pr-baseline-action@729efbcd239b8a4e578eead7b5321af2f79bbd99 # v0.2.1
               with:
                   base: trunk
                   baselines: ${{ env.PR_BASELINES }}
@@ -109,7 +109,7 @@ jobs:
 
             - name: Refresh the pull requests a move can invalidate
               id: refresh
-              uses: mawesomedev/pr-baseline-action@cc4d934b8c7c8cd2fd965d8334849d8108321ab3 # v0.2.0
+              uses: mawesomedev/pr-baseline-action@729efbcd239b8a4e578eead7b5321af2f79bbd99 # v0.2.1
               with:
                   base: trunk
                   baselines: ${{ env.PR_BASELINES }}
@@ -127,7 +127,7 @@ jobs:
 
             - name: Upload the per-pull-request results
               if: ${{ !cancelled() && steps.refresh.outputs.results-file != '' && (failure() || steps.refresh.outputs.written != '0') }}
-              uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+              uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
               with:
                   name: required-trunk-changes-refresh-${{ github.run_id }}
                   path: ${{ steps.refresh.outputs.results-file }}
@@ -161,7 +161,7 @@ jobs:
                   persist-credentials: false
 
             - name: Stamp the unstamped pull requests
-              uses: mawesomedev/pr-baseline-action@cc4d934b8c7c8cd2fd965d8334849d8108321ab3 # v0.2.0
+              uses: mawesomedev/pr-baseline-action@729efbcd239b8a4e578eead7b5321af2f79bbd99 # v0.2.1
               with:
                   base: trunk
                   baselines: ${{ env.PR_BASELINES }}
